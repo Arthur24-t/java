@@ -23,42 +23,39 @@ public class Compte {
         this.solde = solde;
     }
 
-public int getNumCompte(){
-    return numCompte;
-}
+    public int getNumCompte() {
+        return numCompte;
+    }
 
-public double getSolde(){
-    return numCompte;
-}
+    public double getSolde() {
+        return numCompte;
+    }
 
-public String getidentite(){
-    return identite;
-}
+    public String getidentite() {
+        return identite;
+    }
 
+    public void setNumCompte(int numCompte) {
+        this.numCompte = numCompte;
+    }
 
-public void setNumCompte(int numCompte){
-    this.numCompte = numCompte;
-}
+    public void setsolde(double solde) {
+        this.solde = solde;
+    }
 
-public void setsolde(double solde){
-    this.solde = solde;
-}
+    public void setIdentite(String identite) {
+        this.identite = identite;
+    }
 
-public void setIdentite(String identite){
-    this.identite = identite;
-}
+    public void operation(double montant) {
+        solde += montant;
 
-public void operation(double montant){
-solde += montant;
+    }
 
-}
+    public void editerRelever() {
 
-public void editerRelever(){
+        System.out.println("le compte de numero " + numCompte + " est pour " + identite + " contient : " + solde + "€");
 
-System.out.println("le compte de numero " + numCompte + " est pour " + identite + " contient : " + solde +"€");
-
-}
-
-
+    }
 
 }
