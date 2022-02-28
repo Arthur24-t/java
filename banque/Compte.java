@@ -55,7 +55,7 @@ solde += montant;
 
 public void editerRelever(){
 
-System.out.println("le compte de numero " + numCompte + " est pour " + identite + " contient : " + solde);
+System.out.println("le compte de numero " + numCompte + " est pour " + identite + " contient : " + solde +"€");
 
 }
 

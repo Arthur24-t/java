@@ -124,7 +124,7 @@ public class robot {
     }
 
 public void Etat(){
-    System.out.println("le robot : " + nom + "de numero " + num + "est en position : X= "+ posiX +" Y= "+ posiY + "et d'orientation "+ orientation);
+    System.out.println("le robot : " + nom + " de numero " + num + "est en position : X= "+ posiX +" Y= "+ posiY + "et d'orientation "+ orientation);
 }
 
 }
