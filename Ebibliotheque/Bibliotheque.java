@@ -68,4 +68,25 @@ public class Bibliotheque implements Ebibliotheque{
 
         return l;
     }
+
+
+    
+    public void preter(long numeroLivre, int numeroLecteur) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    
+    public void retourner(long numeroLivre) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    
+    public void editerBilan() {
+        // TODO Auto-generated method stub
+        
+    }
 }
