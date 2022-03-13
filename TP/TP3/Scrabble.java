@@ -86,9 +86,11 @@ public class Scrabble implements InterfaceScrabble {
 			System.out.print("-"+ lettre[i]+"-");
 		}
 
+		System.out.println("entrer un mot");
 		String mot = scanner.nextLine();
 		contient = dico.contientMot(mot);
-		return null;
+		System.out.println(contient);
+		return mot;
 	}
 
 	@Override

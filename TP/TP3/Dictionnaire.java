@@ -85,21 +85,19 @@ public class Dictionnaire implements Serializable, InterfaceDictionnaire {
 	public boolean contientMot(String mot) {
 		boolean contient = false;
 		try {
-			File f = new File("newdico.txt");
+			File f = new File("/home/arthur/cours/2eme année/java/TP/TP3/newdico.txt");
 
 			BufferedReader b = new BufferedReader(new FileReader(f));
 
 			String readLine = "";
 
 			while ((readLine = b.readLine()) != null) {
-
 				if (readLine == mot) {
 					contient = true;
-					break;
 				}
 
 			}
-
+			b.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
