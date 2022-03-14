@@ -87,7 +87,7 @@ public class Dictionnaire implements Serializable, InterfaceDictionnaire {
 		boolean contient = false;
 
 		try {
-			File f = new File("/home/arthur/cours/2eme année/java/TP/TP3/newdico.txt");
+			File f = new File("C:/Users/trusg/Documents/GitHub/java-Deust2/TP/TP3/newdico.txt");
 
 			BufferedReader b = new BufferedReader(new FileReader(f));
 
