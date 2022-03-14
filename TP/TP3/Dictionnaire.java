@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * La classe Dictionnaire permet de représenter le dictionnaire du scrabble, qui
@@ -84,24 +85,30 @@ public class Dictionnaire implements Serializable, InterfaceDictionnaire {
 
 	public boolean contientMot(String mot) {
 		boolean contient = false;
+
 		try {
 			File f = new File("/home/arthur/cours/2eme année/java/TP/TP3/newdico.txt");
 
 			BufferedReader b = new BufferedReader(new FileReader(f));
 
-			String readLine = "";
-
-			while ((readLine = b.readLine()) != null) {
-				if (readLine == mot) {
-					contient = true;
+			
+			String line = null;
+			while ((line = b.readLine()) != null) {
+				StringTokenizer st = new StringTokenizer(line);
+				while (st.hasMoreTokens()) {
+					if (st.nextToken().equals(mot)) {
+						return contient = true;
+					}
 				}
-
 			}
+
 			b.close();
+			return contient;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return contient;
+
 	}
 
 	public void afficherContenu() {

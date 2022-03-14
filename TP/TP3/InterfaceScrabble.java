@@ -11,7 +11,7 @@ public interface InterfaceScrabble {
 		
 	// Contient les points associés aux 26 lettres de l'alphabet (a vaut 1 point, b vaut 3 points, etc.)
 	public static final int[] pointsLettres = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 10, 1, 2, 1, 1, 3, 8, 1, 1, 1, 1, 4, 10, 10, 10, 10} ;	
-	public static final char[] lettres={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	public static final char[] lettres={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 	/**
 	 * Détermine le nombre de points du mot passé en paramètre
 	 * @param mot String dont on veut connaître le nombre de points
