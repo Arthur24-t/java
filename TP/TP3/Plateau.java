@@ -24,25 +24,34 @@ public class Plateau implements InterfacePlateau {
 				grille[i][i]='.';
 	}
 
-	@Override
+
 	public void placerMot(String mot) {
-		// TODO Auto-generated method stub
+		grille = new char[15][15];
+		for (int i=7;i<15; i++)
+		{
+			for (int j=7; j<15; j++)
+			{
+				for(char k = 0; k < mot.length(); k++)
+				{
+					grille[i][j]= k;
+				}
+			}
+		}
 		
 	}
 
-	@Override
+
 	public void placerMot(String mot, Lettre lettre) throws PlacementImpossible {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
 	public Lettre[] premieresLettres() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public void afficher() {
 		// TODO Auto-generated method stub
 		
