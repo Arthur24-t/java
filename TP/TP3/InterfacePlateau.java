@@ -1,6 +1,5 @@
-package TP.TP3;
+package TP.TP3
 
-import TP.TP3.PlacementImpossible;
 
 /**
  * InterfacePlateau contient les méthodes à définir (a minima) dans la classe Plateau

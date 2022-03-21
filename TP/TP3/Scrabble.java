@@ -1,7 +1,11 @@
-package TP.TP3;
+// TP en binome 
+// Wandolski Pauline 
+// Trusgnach Arthur
 
-import java.util.ArrayList;
-import java.util.Scanner;
+
+package TP.TP3
+
+import java.util.*;
 
 /**
  * La classe Scrabble permet d'initialiser et de gérer une partie 
@@ -13,106 +17,231 @@ public class Scrabble implements InterfaceScrabble {
 	
 	private Dictionnaire dico;
 	private Plateau plateau;
+	private ArrayList <String> alpha = new ArrayList <String>();
 	
-	public Scrabble() {
+	public Scrabble() throws PasDeSolution {
 		
-		// Initialisation du plateau de jeu
+		
+		for (int i=0; i<26; i++) {
+			String x = String.valueOf(this.alphabet[i]);
+			int y = this.pointsLettres[i];
+			this.alpha.add(x);
+		}
+		
+		
+		
 		plateau = new Plateau();
 		
-		// Chargement du dictionnaire
+		
 		
 		try {
-			dico = Dictionnaire.readFile("Dictionnaire.ser");
+			dico = Dictionnaire.readFile("../Dictionnaire.ser");
 		}
 		catch (Exception e) {
-			//System.out.println(e);
+			
 			dico = new Dictionnaire();
 			System.out.println("lecture dictionnaire...");
 			Dictionnaire.saveFile(dico, "Dictionnaire.ser");
 			System.out.println("dictionnaire enregistré...");
 		}
 		
-		dico.afficherContenu();
+		Chevalet c1 = new Chevalet('b', 'o', 'n', 'j', 'o', 'u', 'r');
+		Chevalet c2 = new Chevalet('j', 'g', 'n', 'a', 'r', 'o', 'd');
+		Chevalet c3 = new Chevalet('k', 'p', 'a', 'r', 'q', 'u', 'f');
+		Chevalet c4 = new Chevalet('r', 'z', 'h', 'k', 'x', 'u', 'g');
 		
-		// Génération d'un chevalet
-		Chevalet c1 = new Chevalet('B', 'O', 'N', 'J', 'O', 'U', 'R');
+		System.out.println("Le meilleur mot qu'on peut former avec les lettres du chevalet est : '" + formerMot(c1) + "' et il rapporte " + nombrePoints(formerMot(c1)) + " points.");
 		
-		// Exemple de génération et de placement d'un mot
+	
 		try {
 			String mot = this.formerMot(c1);
 			plateau.placerMot(mot);
 		}
 		catch (PasDeSolution e) {
+			e.getMessage();
 		}
-
-		// A VOUS DE JOUER POUR LA SUITE !
 		
-	}
-
-	public static void main(String args[]) {
-		new Scrabble(); 
+);
+		plateau.LettresSurPlateau(plateau);
 		
-
-
+			plateau.afficher();
+	
+		try
+		{
+		    Thread.sleep(1000);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
+		
+		
+		try {
+			Lettre lettre1 = new Lettre('B', 0, 0);
+			String mot = this.formerMot(c2, 'B');
+			plateau.placerMot(mot, lettre1);
+		}
+		catch (PlacementImpossible e) {
+			e.getMessage();
+		}
+		plateau.afficher();
+		
+	
+		try
+		{
+		    Thread.sleep(1000);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
+		
+		//Mot 2
+		try {
+			Lettre lettre2 = new Lettre('A', 0, 0);
+			String mot = this.formerMot(c3, 'A');
+			plateau.placerMot(mot, lettre2);
+		}
+		catch (PlacementImpossible e) {
+			e.getMessage();
+		}
+		plateau.afficher();
+		
+	
+		try
+		{
+		    Thread.sleep(1000);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
+		
+		//Mot 3
+		try {
+			Lettre lettre3 = new Lettre('R', 0, 0);
+			String mot = this.formerMot(c4, 'R');
+			plateau.placerMot(mot, lettre3);
+		}
+		catch (PlacementImpossible e) {
+			e.getMessage();
+		}
+		plateau.afficher();
 	}
-
-
+	
+	
+	
+	
 	public int nombrePoints(String mot) {
-	char lettre;
-	int total=0;
-	int position=0; 
-		for (int i =0; i< mot.length();i++){
-			lettre = mot.charAt(i);
-
-			for(int j=0; j < lettres.length;j++){
-				if(lettre == lettres[j]){
-					position = j;
-				}
-			}
-			total += pointsLettres[position];
+		int total = 0;
+		for (int i=0; i<mot.length(); i++) {
+			String lettre = String.valueOf(mot.charAt(i));
+			lettre = lettre.toLowerCase();
+			int indice = this.alpha.indexOf(lettre);
+			int point = this.pointsLettres[indice];
+			total += point;
 		}
-
 		return total;
 	}
 
-	
+
 	public String formerMot(Chevalet lettres) throws PasDeSolution {
-		Scanner scanner = new Scanner(System.in);
-		boolean contient = false;
+		n
+		int pointsMeilleur = 0;
 		
-		System.out.println("voici les lettres du chevalet :");
-		char[] lettre = lettres.getLettres();
-		ArrayList<Integer> bon = new ArrayList<Integer>();
-		for(int i=0; i< 7; i++){
-			System.out.print("-"+ lettre[i]+"-");
-		}
-
-		System.out.println("entrer un mot");
-		String mot = scanner.nextLine();
+		ArrayList <String> mots_possibles = motsPossibles(lettres);
 		
-
-		for(int i=0; i< mot.length(); i++){
-			
-			bon.add(mot.indexOf(lettre[i]));
-
-		System.out.println(mot.indexOf(lettre[i]));
+		char [] lettres_chevalet = lettres.getLettres();
+		
+		
+		String meilleur = null;
+		
+		
+		for (int index = 0 ; index < mots_possibles.size() ; index++) {
+			if (nombrePoints(mots_possibles.get(index)) > pointsMeilleur) {
+				pointsMeilleur = nombrePoints(mots_possibles.get(index));
+				meilleur = mots_possibles.get(index);
+			}
 		}
-
-		for (int j=0; j< mot.length(); j++)
-{
-		//System.out.println(bon.get(j));
-}
-		contient = dico.contientMot(mot);
-		System.out.println(contient);
-		return mot;
+		return meilleur;
 	}
 
-	@Override
+	public ArrayList<String> motsPossibles (Chevalet ch) {
+		
+
+		ArrayList <String> mots_possibles = new ArrayList <String>();
+		char [] lettres_chevalet = ch.getLettres();
+		String nvMot;
+		nvMot = String.valueOf(lettres_chevalet).toUpperCase();
+		
+		if (this.dico.contientMot(nvMot) && !mots_possibles.contains(nvMot)) {
+			mots_possibles.add(nvMot);
+		}
+		
+		for (int i=0; i<7; i++) {
+			for (int j=0; j<6; j++) {
+				String motVerif;
+				int c = 5;
+				while (c>=0) {
+					for (int x=0; x<=c; x++) {
+						char [] lettres_temp = Arrays.copyOfRange(lettres_chevalet, x, x+(6-c));
+						motVerif = String.valueOf(lettres_temp);
+						motVerif = motVerif.toUpperCase();
+						
+						if (this.dico.contientMot(motVerif)  && !mots_possibles.contains(motVerif)) {
+							
+								mots_possibles.add(motVerif);
+							
+						}
+					}
+					c--;
+				}
+				
+				char temp = nvMot.charAt(j+1);
+				if (j>=1) {
+					nvMot = nvMot.substring(0,j) + String.valueOf(temp) + nvMot.charAt(j) + nvMot.substring(j+2);
+				}
+				else {
+					nvMot = String.valueOf(temp) + nvMot.charAt(j) + nvMot.substring(j+2);
+				}
+				
+				lettres_chevalet = nvMot.toCharArray();
+			}
+		}
+
+		return mots_possibles;
+	}
+	
+
 	public String formerMot(Chevalet lettres, char lettrePivot) throws PasDeSolution {
-		// TODO Auto-generated method stub
-
+		int pointsMeilleur = 0;
+		String pivot = String.valueOf(lettrePivot).toUpperCase();
 		
-		return null;
+		ArrayList <String> mots_possibles = motsPossibles(lettres);
+		
+		char [] lettres_chevalet = lettres.getLettres();
+		
+		
+		String meilleur = null;
+		
+		
+		for (int index = 0 ; index < mots_possibles.size() ; index++) {
+			String temp = mots_possibles.get(index);
+			if (nombrePoints(temp) > pointsMeilleur && temp.contains(pivot)) {
+				pointsMeilleur = nombrePoints(temp);
+				meilleur = temp;
+			}
+		}
+		return meilleur;
 	}
+	
+	
+	
+
+	public static void main(String args[]) throws PasDeSolution {
+		
+		new Scrabble(); 
+	}
+
 
 }

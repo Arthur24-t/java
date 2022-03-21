@@ -1,4 +1,4 @@
-package TP.TP3;
+package TP.TP3
 
 /**
  * L'interface InterfaceDictionnaire contient les méthodes à implémenter dans la classe Dictionnaire qui implémente
