@@ -1,3 +1,8 @@
+// TP en binome 
+// Wandolski Pauline 
+// Trusgnach Arthur
+
+
 package TP.TP3
 
 /**
@@ -11,7 +16,7 @@ public class Chevalet {
 	
 	
 	
-	
+
 	private char[] lettres; 	
 	
 	public Chevalet (char a, char b, char c, char d, char e, char f, char g) {
